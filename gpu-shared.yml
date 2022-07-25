@@ -1,0 +1,32 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: test-gpu-shared
+  labels:
+    app: gpu-shared
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gpu-shared
+  template:
+    metadata:
+      labels:
+        app: gpu-shared
+    spec:
+      nodeSelector:
+        jina.ai/node-type: gpu-shared
+        karpenter.sh/provisioner-name: gpu-shared
+      tolerations:
+      - key: nvidia.com/gpu-shared
+        operator: Exists
+        effect: NoSchedule
+      containers:
+      - name: gpu-container
+        image: tensorflow/tensorflow:latest-gpu
+        imagePullPolicy: Always
+        command: ["python"]
+        args: ["-u", "-c", "import tensorflow"]
+        resources:
+          limits:
+            nvidia.com/gpu: 1
