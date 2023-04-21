@@ -1,14 +1,14 @@
-region             = "ap-southeast-1"
+region             = "us-west-2"
 environment        = "dev"
-project_name       = "wolf"
+project_name       = "gpu-share"
 
-vpc_name           = "jina-eks-vpc"
-eks_version        = "1.21"
+vpc_name           = "spark-k8s-monitor"
+eks_version        = "1.25"
 
-cidr               = "10.200.0.0/16"
-azs                = ["ap-southeast-1a", "ap-southeast-1b", "ap-southeast-1c"]
-public_subnets     = ["10.200.101.0/24", "10.200.102.0/24", "10.200.103.0/24"]
-private_subnets    = ["10.200.1.0/24", "10.200.2.0/24", "10.200.3.0/24"]
+cidr               = "10.1.0.0/16"
+azs                = ["us-west-2a", "us-west-2b", "us-west-2c"]
+public_subnets     = ["10.1.192.0/20", "10.1.208.0/20", "10.1.224.0/20"]
+private_subnets    = ["10.1.0.0/18", "10.1.64.0/18", "10.1.128.0/18"]
 
 tags = {
     Terraform   = "true"
